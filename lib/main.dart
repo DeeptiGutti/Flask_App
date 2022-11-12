@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  void answerQuestions() {
-    print("Answer Choosen");
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var _a = 0;
+
+  void _answerQuestions() {
+    setState(() {
+      _a++;
+    });
+
+    print(_a);
   }
 
   @override
@@ -14,7 +26,8 @@ class MyApp extends StatelessWidget {
     var questions = [
       'What\'s is your favourite color?',
       'Who is your favourite actor?',
-      'What\'s your favourite Sweert'
+      'What\'s your favourite Sweert',
+      'How are you doing?'
     ];
     return MaterialApp(
       home: Scaffold(
@@ -23,24 +36,22 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text('Quick Questions'),
+            Question(questions[_a]),
             ElevatedButton(
-              child: Text('Text 1'),
-              onPressed: answerQuestions,
+              child: Text("1"),
+              onPressed: _answerQuestions,
             ),
             ElevatedButton(
-              child: Text('Text 2'),
-              onPressed: (() {
-                print("Hello");
-              }),
+              child: Text("2"),
+              onPressed: _answerQuestions,
             ),
             ElevatedButton(
-              child: Text('Text 3'),
-              onPressed: (() => print("Answer 3")), //Anonymous Function
+              child: Text('3'),
+              onPressed: _answerQuestions,
             ),
             ElevatedButton(
-              child: Text('Text 4'),
-              onPressed: answerQuestions,
+              child: Text('4'),
+              onPressed: _answerQuestions,
             ),
           ],
         ),
